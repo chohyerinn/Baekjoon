@@ -1,21 +1,22 @@
 M = int(input())
 N = int(input())
 
-findPrime = [True] * (N + 1)
-findPrime[0] = findPrime[1] = False
+def is_prime(x):
+    if x < 2:
+        return False
+    for i in range(2, int(x ** 0.5) + 1):
+        if x % i == 0:
+            return False
+    return True
 
-for i in range(2, int(N**0.5) + 1):
-    if findPrime[i]:
-        for j in range(i*i, N+1, i):
-            findPrime[j] = False
+primes = []
 
-result = []
-for i in range(max(2, M), N+1):
-    if findPrime[i]:
-        result.append(i)
+for num in range(M, N + 1):
+    if is_prime(num):
+        primes.append(num)
 
-if result:
-    print(sum(result))
-    print(min(result))
-else:
+if len(primes) == 0:
     print(-1)
+else:
+    print(sum(primes))
+    print(min(primes))
