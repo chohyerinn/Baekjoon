@@ -1,17 +1,20 @@
 T = int(input())
+
 for _ in range(T):
     x1, y1, r1, x2, y2, r2 = map(int, input().split())
 
-    d = (x2-x1)**2 + (y2-y1)**2  
+    dx = x1 - x2
+    dy = y1 - y2
+    d2 = dx * dx + dy * dy
 
-    if d == 0 and r1 == r2:
+    sum_r = (r1 + r2) * (r1 + r2)
+    diff_r = (r1 - r2) * (r1 - r2)
+
+    if d2 == 0 and r1 == r2:
         print(-1)
-
-    elif d == (r1+r2)**2 or d == (r1-r2)**2:
-        print(1)
-        
-    elif (r1-r2)**2 < d < (r1+r2)**2:
-        print(2)
-
-    else:
+    elif d2 > sum_r or d2 < diff_r:
         print(0)
+    elif d2 == sum_r or d2 == diff_r:
+        print(1)
+    else:
+        print(2)
